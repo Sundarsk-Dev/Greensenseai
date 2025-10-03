@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenPulse AI - Smart Emission Monitor</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="logo">
+          <span class="logo-icon">🌱</span>
+          <h1>GreenPulse AI</h1>
+        </div>
+        <p class="subtitle">Smart Emission Monitoring System</p>
+      </header>
+
+      <!-- Alert Banner -->
+      <div id="alert-banner" class="alert-banner hidden">
+        <span class="alert-icon">⚠️</span>
+        <span id="alert-message">High emission levels detected!</span>
+      </div>
+
+      <!-- Main Dashboard -->
+      <div class="dashboard">
+        <!-- Current Score Card -->
+        <div class="card score-card">
+          <h2 class="card-title">Current Emission Score</h2>
+          <div class="score-display">
+            <div id="current-score" class="score-value">--</div>
+            <div id="current-status" class="score-status">Loading...</div>
+          </div>
+          <div class="score-details">
+            <div class="detail-item">
+              <span class="detail-label">CO:</span>
+              <span id="co-value" class="detail-value">--</span>
+              <span class="detail-unit">mg/m³</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">NOx:</span>
+              <span id="nox-value" class="detail-value">--</span>
+              <span class="detail-unit">ppb</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">NO2:</span>
+              <span id="no2-value" class="detail-value">--</span>
+              <span class="detail-unit">µg/m³</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Temp:</span>
+              <span id="temp-value" class="detail-value">--</span>
+              <span class="detail-unit">°C</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prediction Card -->
+        <div class="card prediction-card">
+          <h2 class="card-title">Next Hour Prediction</h2>
+          <div class="prediction-display">
+            <div class="prediction-icon">🔮</div>
+            <div>
+              <div id="predicted-score" class="predicted-value">--</div>
+              <div id="predicted-status" class="predicted-status">
+                Calculating...
+              </div>
+            </div>
+          </div>
+          <div class="prediction-info">
+            <p>
+              ML model predicts emission trends based on historical patterns and
+              current conditions
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Historical Chart -->
+      <div class="card chart-card">
+        <div class="chart-header">
+          <h2 class="card-title">Historical Emission Trend (24 Hours)</h2>
+          <div class="legend">
+            <span class="legend-item safe">● Safe (6.5-10)</span>
+            <span class="legend-item moderate">● Moderate (4-6.5)</span>
+            <span class="legend-item high">● High (<4)</span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="emissionChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <button id="refresh-btn" class="refresh-btn">
+            <span class="refresh-icon">🔄</span>
+            Refresh Data
+          </button>
+          <div class="timestamp">
+            <span>Last Updated: </span>
+            <span id="last-update">Never</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+  </body>
+</html>
